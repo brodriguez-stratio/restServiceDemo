@@ -18,7 +18,7 @@ pipeline {
             ],
             credentialsId: 'nexus3',
             groupId: 'com.example',
-            nexusUrl: 'localhost:8081/',
+            nexusUrl: 'localhost:8081',
             nexusVersion: 'nexus3',
             protocol: 'http',
             repository: 'simpleapp-release',
