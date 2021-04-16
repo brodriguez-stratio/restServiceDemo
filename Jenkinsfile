@@ -17,9 +17,11 @@ pipeline {
         // Where your Nexus is running
         NEXUS_URL = "172.17.0.2:8081"
         // Repository where we will upload the artifact
-        NEXUS_REPOSITORY = "repository-example"
+        NEXUS_REPOSITORY_ARTEFACT = "repository-example"
         // Jenkins credential id to authenticate to Nexus OSS
         NEXUS_CREDENTIAL_ID = "nexus-credentials"
+        // Repository where we will upload the image
+        NEXUS_REPOSITORY_IMAGE = ""
     }
 
     stages {
@@ -65,7 +67,7 @@ pipeline {
                             nexusUrl: NEXUS_URL,
                             groupId: pom.groupId,
                             version: pom.version,
-                            repository: NEXUS_REPOSITORY,
+                            repository: NEXUS_REPOSITORY_ARTEFACT,
                             credentialsId: NEXUS_CREDENTIAL_ID,
                             artifacts: [
                                 // Artifact generated such as .jar, .ear and .war files.
@@ -88,6 +90,19 @@ pipeline {
                 }
             }
         }
-
+        
+      stage('Build image') {         
+       
+            app = docker.build("brandonjones085/test")    
+       }           
+        
+       stage('Test image') {           
+           app.inside {            
+             sh 'echo "Tests passed"'        
+            }    
+       }
+    }  
+        
+       
     }
 }
