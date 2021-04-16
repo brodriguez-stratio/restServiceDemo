@@ -4,11 +4,6 @@ pipeline {
         label "master"
     }
     
-    enviroment {
-        dockerImage = ""
-        registry = "brodriguezstratio/restservicedemo"
-    }
-    
     tools {
         // Note: this should match with the tool name configured in your jenkins instance (JENKINS_URL/configureTools/)
         maven "Maven 3.6.0"
@@ -27,6 +22,9 @@ pipeline {
         NEXUS_CREDENTIAL_ID = "nexus-credentials"
         // Repository where we will upload the image
         NEXUS_REPOSITORY_IMAGE = ""
+        
+        dockerImage = ""
+        registry = "brodriguezstratio/restservicedemo"
     }
 
     stages {
