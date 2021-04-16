@@ -23,9 +23,10 @@ pipeline {
         // Repository where we will upload the image
         NEXUS_REPOSITORY_IMAGE = ""
         
-        dockerImage = ""
         registry = "brodriguezstratio/restservicedemo"
-        registryCredential = "dockerhub_id"
+        registryCredential = 'dockerhub_id'
+        dockerImage = ''
+
     }
 
     stages {
