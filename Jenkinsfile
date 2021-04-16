@@ -25,6 +25,7 @@ pipeline {
         
         dockerImage = ""
         registry = "brodriguezstratio/restservicedemo"
+        registryCredential = "dockerhub_id"
     }
 
     stages {
@@ -100,6 +101,15 @@ pipeline {
                     dockerImage = docker.build registry
                 }
             }
+        }
+        
+        stage('Upload Image') {
+             steps{    
+                   script {
+                      docker.withRegistry( '', registryCredential ) {
+                      dockerImage.push()
+                   }
+             }
         }
     }
 }
