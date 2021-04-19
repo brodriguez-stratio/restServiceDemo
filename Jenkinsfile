@@ -107,7 +107,7 @@ pipeline {
         stage('Upload Image') {
              steps{    
                    script {
-                      docker.withRegistry( 'http://172.17.0.2:8081/repository/docker-image/', registryCredential ) {
+                      docker.withRegistry( '172.17.0.2:8081/repository/docker-image/', registryCredential ) {
                       dockerImage.push()
                      }
                    }
