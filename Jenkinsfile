@@ -76,7 +76,7 @@ pipeline {
                             credentialsId: NEXUS_CREDENTIAL_ID,
                             artifacts: [
                                 // Artifact generated such as .jar, .ear and .war files.
-                                [artifactId: pom.artifactId,
+                                [artifactId: pom.artifactId + ":$BUILD_NUMBER",
                                 classifier: '',
                                 file: artifactPath,
                                 type: pom.packaging],
