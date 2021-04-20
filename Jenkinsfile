@@ -24,7 +24,7 @@ pipeline {
         NEXUS_REPOSITORY_IMAGE = ""
         
         registry = "brodriguezstratio/restservicedemo"
-        registryCredential = 'nexus-credentials'
+        registryCredential = 'dockerhub_id'
         dockerImage = ''
 
     }
@@ -107,7 +107,7 @@ pipeline {
         stage('Upload Image') {
              steps{    
                    script {
-                      docker.withRegistry( 'http://172.17.0.2:8081/repository/docker-image/', NEXUS_CREDENTIAL_ID ) {
+                      docker.withRegistry( '', registryCredential ) {
                       dockerImage.push()
                      }
                    }
